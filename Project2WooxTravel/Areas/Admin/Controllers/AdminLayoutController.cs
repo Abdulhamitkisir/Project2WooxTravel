@@ -13,5 +13,25 @@ namespace Project2WooxTravel.Areas.Admin.Controllers
         {
             return View();
         }
+        public PartialViewResult PartialHead()
+        {
+            return PartialView();
+        }
+        public PartialViewResult PartialSideBar() 
+        {
+            return PartialView();             
+        }
+        public PartialViewResult PartialNavbar() 
+        {
+            return PartialView();
+        }
+        public PartialViewResult PartialFooter() 
+        {
+            return PartialView();
+        }
+        public PartialViewResult PartialScript() 
+        {
+            return PartialView();
+        }
     }
 }

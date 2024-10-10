@@ -129,8 +129,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLayoutController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Context\TravelContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Destination.cs" />
@@ -145,6 +147,10 @@
     <Compile Include="Migrations\202410081831497_mig2.cs" />
     <Compile Include="Migrations\202410081831497_mig2.Designer.cs">
       <DependentUpon>202410081831497_mig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410101901571_mig3.cs" />
+    <Compile Include="Migrations\202410101901571_mig3.Designer.cs">
+      <DependentUpon>202410101901571_mig3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -603,6 +609,12 @@
     <Content Include="kaiadmin-lite-1.2.0\LICENSE" />
     <Content Include="kaiadmin-lite-1.2.0\README.md" />
     <Content Include="Areas\Admin\Views\AdminLayout\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\PartialHead.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\PartialSideBar.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\PartialNavbar.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\PartialFooter.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\PartialScript.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\CategoryList.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -668,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410081831497_mig2.resx">
       <DependentUpon>202410081831497_mig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410101901571_mig3.resx">
+      <DependentUpon>202410101901571_mig3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
