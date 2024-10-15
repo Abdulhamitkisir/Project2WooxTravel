@@ -9,8 +9,9 @@ namespace Project2WooxTravel.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Admin/Category
+                
         TravelContext context=new TravelContext();
+        [Authorize]
         public ActionResult CategoryList()
         {
             var values= context.Categories.ToList();
