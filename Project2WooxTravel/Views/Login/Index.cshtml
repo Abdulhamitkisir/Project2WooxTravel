@@ -4,13 +4,17 @@
 }
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<div class="container">
-    <br /><br />
-    <div class="alert alert-warning"><h3>Kullanici Giris Sayfasi</h3></div>
-  
-    <label>Kullanici Adiniz</label>
-    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
-    <br />
-    <label>Sifreniz</label>
-    @Html.PasswordFor(x => x.Pasword, new { @class = "form-control" })
-</div>
+<form method="post">
+    <div class="container">
+        <br /><br />
+        <div class="alert alert-warning"><h3>Kullanici Giris Sayfasi</h3></div>
+
+        <label>Kullanici Adiniz</label>
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+        <br />
+        <label>Sifreniz</label>
+        @Html.PasswordFor(x => x.Pasword, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Giris Yap</button>
+    </div>
+</form>

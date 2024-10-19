@@ -8,6 +8,8 @@ using Project2WooxTravel.Entities;
 
 namespace Project2WooxTravel.Areas.Admin.Controllers
 {
+    [Authorize]
+    //[AllowAnonymous] Mevcuttaki butun kurallardan muhagfiyet saglar. Loginsiz islem yapabilir.
     public class DestinationController : Controller
     {
         // GET: Admin/Destination
