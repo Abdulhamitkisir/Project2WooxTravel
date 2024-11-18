@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Project2WooxTravel.Context;
-using Project2WooxTravel.Entities;
+using PagedList;
+
 namespace Project2WooxTravel.Controllers
 {
     public class DefaultController : Controller
     {
-        TravelContext context=new TravelContext();
+        TravelContext context = new TravelContext();
         // GET: Default
         public ActionResult Index()
         {
@@ -19,7 +17,7 @@ namespace Project2WooxTravel.Controllers
         {
             return PartialView();
         }
-        public PartialViewResult PartialScript() 
+        public PartialViewResult PartialScript()
         {
             return PartialView();
         }
@@ -29,16 +27,37 @@ namespace Project2WooxTravel.Controllers
         }
         public PartialViewResult PartialBanner()
         {
-            return PartialView();
+            var values = context.Destinations.Take(4).ToList();
+            return PartialView(values);
         }
-        public PartialViewResult PartialCountry()
+        public PartialViewResult PartialCountry(int page=1)
         {
-            var values=context.Destinations.ToList();
+            var values = context.Destinations.ToList().ToPagedList(page,3);
             return PartialView(values);
         }
         public PartialViewResult PartialFooter()
         {
             return PartialView();
         }
+        public PartialViewResult PartialTourDetail(int id)
+        {
+            var values = context.Destinations.Where(x => x.DestinationId == id).ToList();
+            return PartialView(values);
+        }
+        public ActionResult PartialRoutes()
+        {
+            var values=context.Destinations.ToList();
+            return View(values);
+        }
+        public ActionResult AboutPage()
+        {
+           return View();
+        }
+        public ActionResult Register()
+        {
+
+            return View();
+        }
+   
     }
 }

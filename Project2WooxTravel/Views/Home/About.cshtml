@@ -1,9 +1,25 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿
+@{
+    Layout = null;
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+
+@Html.Action("PartialHead", "Default")
+
+<body>
+
+    @Html.Action("PartialNavbar", "Default")
+
+    @Html.Action("PartialBanner", "Default")
+
+  
+
+    @Html.Action("PartialFooter", "Default")
+
+    @Html.Action("PartialScript", "Default")
+
+</body>
+
+</html>

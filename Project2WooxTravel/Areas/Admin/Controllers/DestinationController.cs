@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Project2WooxTravel.Context;
 using Project2WooxTravel.Entities;
-
+using PagedList;
 namespace Project2WooxTravel.Areas.Admin.Controllers
 {
     [Authorize]
@@ -19,6 +19,11 @@ namespace Project2WooxTravel.Areas.Admin.Controllers
             var values = context.Destinations.ToList();
             return View(values);
         }
+        //public ActionResult DestinationList(int page=1)
+        //{
+        //    var values = context.Destinations.ToList().ToPagedList(page,5);
+        //    return View(values);
+        //}
         public ActionResult CreateDestination() 
         {
             return View();

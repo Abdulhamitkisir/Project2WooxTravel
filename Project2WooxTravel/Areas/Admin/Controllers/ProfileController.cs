@@ -18,5 +18,11 @@ namespace Project2WooxTravel.Areas.Admin.Controllers
             var values=context.Admins.Where(x=>x.Username==a).FirstOrDefault();
             return View(values);
         }
+        public ActionResult ProfilDetails() 
+        {        
+            var a=Session["y"];
+            var values = context.Admins.Where(x=> x.Email==a).ToList();
+            return View(values);
+        }
     }
 }

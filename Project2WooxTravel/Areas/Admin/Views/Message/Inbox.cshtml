@@ -5,6 +5,13 @@
     int count = 0;
 }
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="container">
     <div class="page-inner">
 
@@ -13,8 +20,8 @@
 
 
                 <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Gelen Mesaj Sayfasi</div>
+                    <div class="card-header" style="background-color: #2E8C03">
+                        <div class="card-title">Inbox Page</div>
                     </div>
                     <div class="card-body">
 
@@ -22,29 +29,39 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Gönderici</th>
-                                    <th scope="col">Konu</th>
-                                    <th scope="col">Tarih</th>
-                                    <th scope="col">Durum</th>
-                                    <th scope="col">Mesaji Ac</th>                                  
+                                    <th scope="col">Sender</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Is Read</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     count++;
+                                    count++;
                                     <tr>
                                         <td>@count</td>
                                         <td>@item.SenderMail</td>
                                         <td>@item.Subject</td>
                                         <td>@item.SendDate.ToShortDateString()</td>
-                                        <td>@item.IsRead</td>
-                                        <td><a href="#" class="btn btn-warning">Mesaji Ac</a></td>
+                                        <td id="status-@item.MessageId">@((item.IsRead) ? "Read" : "Unread")</td>
+                                        <td>
+                                            <form method="post" action="/Admin/Message/MarkAsRead">
+                                                <input type="hidden" name="messageId" value="@item.MessageId" />
+                                                <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#messageModal"
+                                                        onclick="openMessageModal('@item.Subject', '@item.Content', '@item.SendDate.ToShortDateString()', @item.MessageId)">
+                                                    <i class="fas fa-envelope-open-text"></i>
+                                                    Open Message
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
-                        <a href="/Admin/Message/SendMessage" class="btn btn-primary">Yeni Mesaj Gönder</a>
+                        <a href="/Admin/Message/SendMessage" class="btn btn-primary">Send New Message</a>
                     </div>
                 </div>
 
@@ -55,3 +72,35 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalSubject"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalContent"></p>
+                <p><small id="modalSendDate"></small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openMessageModal(subject, content, sendDate, messageId) {
+        // Modal içeriğini güncelle
+        document.getElementById('modalSubject').innerText = subject;
+        document.getElementById('modalContent').innerText = content;
+        document.getElementById('modalSendDate').innerText = sendDate;
+
+        // Sayfa yeniden yüklendikten sonra, mesajın okunduğu statü güncellenmiş olacak.
+        // Bu nedenle burada işlemi AJAX ile yapmak gerekmez.
+    }
+</script>

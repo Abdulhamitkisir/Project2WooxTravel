@@ -1,11 +1,15 @@
-﻿@model List<Project2WooxTravel.Entities.Destination>
-<div class="visit-country">
-    <div class="container">
+﻿@model PagedList<Project2WooxTravel.Entities.Destination>
+@using PagedList;
+@using PagedList.Mvc;
+<br />
+<div class="visit-country" >
+    <div class="container" style="background-color:aliceblue">
         <div class="row">
             <div class="col-lg-5">
                 <div class="section-heading">
-                    <h2>Popüler Tur ve Seyahat otalarimiz</h2>
-                    <p>Dünyanin Dört Bir Noktasina Alaninda Uzman Rehberler Esliginde</p>
+                    <h2 style="color:black">Our popular Tour and Travel routes</h2>
+                    <a style="color:black">Accompanied by Expert Guides to All Around the World</a>
+                   
                 </div>
             </div>
         </div>
@@ -28,17 +32,25 @@
                                                 <h4>@item.Country</h4>
                                                 <span>@item.City</span>
                                                 <div class="main-button">
-                                                    <a href="about.html">Tur Detaylarini Gör</a>
+                                                    <a href="/Default/PartialTourDetail/@item.DestinationId">Details</a>
+
+
                                                 </div>
-                                                <p>@item.Description</p>
+                                                @if (item.Description.Length < 100)
+                                                {
+                                                    <p>@item.Description</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>@item.Description.Substring(0, 100)....</p>
+                                                }
+
                                                 <ul class="info">
                                                     <li><i class="fa fa-user"></i> @item.DayNight Gün - @(item.DayNight - 1) Gece</li>
                                                     <li><i class="fa fa-globe"></i> @item.Price ₺ </li>
-                                                    <li><i class="fa fa-home"></i>@item.Capacıty Kisi</li>
+                                                    <li><i class="fa fa-home"></i>@item.Capacity Kisi</li>
                                                 </ul>
-                                                <div class="text-button">
-                                                    <a href="about.html">Rehberi Görün <i class="fa fa-arrow-right"></i></a>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -46,10 +58,16 @@
                             </div>
                         }
 
-
+                    <div class="col-lg-12 text-center">
+                        <ul class="page-numbers d-flex justify-content-center">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                            {
+                                LiElementClasses = new List<string> { "page-link" }
+                            })
+                        </ul>                     
                     </div>
                 </div>
-            </div>           
+            </div>
         </div>
     </div>
 </div>

@@ -4,22 +4,19 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
 
-@Html.Action("PartialHead", "Default")
-
+<html>
+<head>
+    @Html.Action("PartialHead", "Default")
+</head>
 <body>
-   
-    @Html.Action("PartialNavbar", "Default")
-   
-    @Html.Action("PartialBanner", "Default")    
+
+    @Html.Action("PartialNavbar", "Default")   
 
     @Html.Action("PartialCountry", "Default")
 
     @Html.Action("PartialFooter", "Default")
 
     @Html.Action("PartialScript", "Default")
-
 </body>
-
 </html>

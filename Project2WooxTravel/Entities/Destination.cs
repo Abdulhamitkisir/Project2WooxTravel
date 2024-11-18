@@ -15,6 +15,6 @@ namespace Project2WooxTravel.Entities
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int Capacıty { get; set; }
+        public int Capacity { get; set; }
     }
 }
